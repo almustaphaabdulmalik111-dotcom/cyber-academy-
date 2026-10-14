@@ -1,0 +1,436 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CyberAcademy helps students learn cybersecurity, ethical hacking, and software engineering through courses and practical challenges.">
+  <title>CyberAcademy | Learn. Build. Secure.</title>
+  <style>
+    :root {
+      --bg: #080d18;
+      --panel: #111a2b;
+      --blue: #3b82f6;
+      --cyan: #22d3ee;
+      --text: #f1f5f9;
+      --muted: #9caec4;
+      --border: #24334a;
+    }* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(8,13,24,.96);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  max-width: 1150px;
+  margin: auto;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo { font-size: 21px; font-weight: 800; }
+.logo span { color: var(--cyan); }
+
+nav { display: flex; align-items: center; gap: 20px; }
+nav a { color: var(--muted); font-size: 14px; }
+nav a:hover { color: var(--cyan); }
+
+.menu-button {
+  display: none;
+  background: transparent;
+  color: white;
+  border: 1px solid var(--border);
+  padding: 7px 11px;
+  border-radius: 8px;
+}
+
+.hero {
+  max-width: 1150px;
+  margin: auto;
+  padding: 76px 20px 65px;
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.eyebrow {
+  color: var(--cyan);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: clamp(38px, 6vw, 65px);
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 22px;
+}
+
+h1 span {
+  background: linear-gradient(90deg, var(--cyan), #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p { color: var(--muted); max-width: 580px; font-size: 16px; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 12px 18px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.primary { background: var(--blue); border-color: var(--blue); color: white; }
+.secondary { background: var(--panel); }
+.btn:hover { filter: brightness(1.15); }
+
+.terminal {
+  background: #0d1524;
+  border: 1px solid #2b405d;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 80px #0005;
+}
+
+.terminal-top {
+  padding: 13px 16px;
+  background: #152136;
+  color: var(--muted);
+  font-size: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.terminal-body {
+  padding: 25px 20px;
+  font-family: monospace;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.terminal-body p { margin: 10px 0; color: #a5f3fc; font-size: 13px; }
+.terminal-body .dim { color: #91a2bb; }
+.terminal-body .green { color: #4ade80; }
+
+.section { padding: 65px 20px; }
+.section.alt { background: #0b1220; }
+.container { max-width: 1150px; margin: auto; }
+
+.section-heading { margin-bottom: 30px; }
+.section-heading h2 { font-size: clamp(27px, 4vw, 36px); margin-bottom: 8px; }
+.section-heading p { color: var(--muted); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card {
+  padding: 23px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 14px;
+  transition: transform .2s, border-color .2s;
+}
+
+.card:hover { transform: translateY(-4px); border-color: var(--blue); }
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #1c3150;
+  font-size: 24px;
+  margin-bottom: 17px;
+}
+
+.card h3 { font-size: 18px; margin-bottom: 9px; }
+.card p { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+
+.card-link { color: var(--cyan); font-size: 14px; font-weight: 700; }
+
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.step {
+  padding: 20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.step strong { display: block; color: var(--cyan); margin-bottom: 8px; }
+.step p { color: var(--muted); font-size: 14px; }
+
+.cta {
+  text-align: center;
+  background: linear-gradient(135deg, #10284a, #111a2b);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 40px 20px;
+}
+
+.cta h2 { font-size: clamp(25px, 4vw, 36px); margin-bottom: 10px; }
+.cta p { color: var(--muted); margin-bottom: 22px; }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 25px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+footer p + p { margin-top: 6px; }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; padding-top: 55px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .roadmap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .menu-button { display: block; }
+  nav {
+    display: none;
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav.open { display: flex; }
+}
+
+@media (max-width: 430px) {
+  .grid, .roadmap { grid-template-columns: 1fr; }
+  h1 { letter-spacing: -1px; }
+  .section { padding: 48px 16px; }
+  .hero { padding-left: 16px; padding-right: 16px; }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a class="logo" href="#home">Cyber<span>Academy</span></a>
+      <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="navigation">Menu ☰</button>
+      <nav id="navigation">
+        <a href="#courses">Courses</a>
+        <a href="#labs">Practical Labs</a>
+        <a href="#roadmap">Learning Roadmap</a>
+        <a href="#about">About Us</a>
+      </nav>
+    </div>
+  </header>  <main>
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow">Your journey into technology starts here</div>
+        <h1>Learn Skills.<br>Build the Future.<br><span>Secure the Digital World.</span></h1>
+        <p>
+          Learn cybersecurity and software engineering from the fundamentals
+          to advanced topics. Develop practical skills through guided lessons,
+          coding exercises, and authorised security challenges.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#courses">Explore Courses →</a>
+          <a class="btn secondary" href="#roadmap">View Learning Roadmap</a>
+        </div>
+      </div>  <div class="terminal" aria-label="Decorative cybersecurity terminal illustration">
+    <div class="terminal-top">● ● ● &nbsp; cyberacademy — learning terminal</div>
+    <div class="terminal-body">
+      <p class="dim">// Your learning journey begins</p>
+      <p><span class="green">student@academy</span>:~$ start-learning</p>
+      <p>Loading cybersecurity fundamentals...</p>
+      <p class="green">[OK] Networking fundamentals</p>
+      <p class="green">[OK] Linux essentials</p>
+      <p class="green">[OK] Programming foundations</p>
+      <p class="dim">Choose a path. Practise. Build. Improve.</p>
+      <p><span class="green">student@academy</span>:~$ <span aria-hidden="true">_</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="courses">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Explore Our Learning Paths</h2>
+      <p>Build a strong foundation, then develop specialised skills.</p>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="icon">🛡️</div>
+        <h3>Cybersecurity Fundamentals</h3>
+        <p>Learn security principles, computer systems, networking, threats, and risk management.</p>
+        <a class="card-link" href="#roadmap">Explore learning path →</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">🔐</div>
+        <h3>Ethical Hacking</h3>
+        <p>Understand authorised security testing, vulnerability assessment, and responsible reporting.</p>
+        <a class="card-link" href="#labs">Explore practical skills →</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">🌐</div>
+        <h3>Network Security</h3>
+        <p>Study IP addresses, DNS, network protocols, firewalls, and secure configurations.</p>
+        <a class="card-link" href="#roadmap">Explore learning path →</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">💻</div>
+        <h3>Software Engineering</h3>
+        <p>Learn programming, data structures, debugging, testing, and software design.</p>
+        <a class="card-link" href="#roadmap">Explore learning path →</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">⌨️</div>
+        <h3>Web Development</h3>
+        <p>Build websites and applications using HTML, CSS, JavaScript, APIs, and databases.</p>
+        <a class="card-link" href="#roadmap">Explore learning path →</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">🔎</div>
+        <h3>Defensive Security</h3>
+        <p>Learn log analysis, threat detection, incident response, and digital forensics fundamentals.</p>
+        <a class="card-link" href="#labs">Explore practical skills →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="labs">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Learn by Doing</h2>
+      <p>Practical learning will help turn knowledge into useful skills.</p>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="icon">🐧</div>
+        <h3>Linux Challenges</h3>
+        <p>Practise terminal commands, permissions, files, and system administration.</p>
+        <span class="card-link">Planned training module</span>
+      </article>
+
+      <article class="card">
+        <div class="icon">🐍</div>
+        <h3>Programming Exercises</h3>
+        <p>Write code, solve problems, and practise debugging with guided exercises.</p>
+        <span class="card-link">Planned training module</span>
+      </article>
+
+      <article class="card">
+        <div class="icon">🚩</div>
+        <h3>CTF Challenges</h3>
+        <p>Solve cybersecurity puzzles in controlled environments designed for learning.</p>
+        <span class="card-link">Planned training module</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="roadmap">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Your Learning Roadmap</h2>
+      <p>Follow a structured path from beginner to advanced study.</p>
+    </div>
+
+    <div class="roadmap">
+      <div class="step">
+        <strong>01 · Beginner</strong>
+        <h3>Learn the Basics</h3>
+        <p>Computers, operating systems, networking, and programming fundamentals.</p>
+      </div>
+      <div class="step">
+        <strong>02 · Foundation</strong>
+        <h3>Build Skills</h3>
+        <p>Linux, Python, web development, databases, and essential security principles.</p>
+      </div>
+      <div class="step">
+        <strong>03 · Intermediate</strong>
+        <h3>Practise</h3>
+        <p>Projects, code testing, defensive security, and authorised training labs.</p>
+      </div>
+      <div class="step">
+        <strong>04 · Advanced</strong>
+        <h3>Specialise</h3>
+        <p>Choose a career path, complete advanced projects, and build a portfolio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="cta">
+      <h2>Build Your Future in Technology</h2>
+      <p>Learn consistently, practise responsibly, and create projects that demonstrate your skills.</p>
+      <a class="btn primary" href="#courses">Explore Learning Paths →</a>
+    </div>
+  </div>
+</section>
+
+  </main>  <footer>
+    <p><strong>CyberAcademy</strong> — Learn. Build. Secure.</p>
+    <p>Educational content for cybersecurity students and software engineers.</p>
+    <p>Practise security testing only on systems you own or have permission to test.</p>
+    <p>© <span id="year">2026</span> CyberAcademy</p>
+  </footer>  <script>
+    const menuButton = document.getElementById("menuButton");
+    const navigation = document.getElementById("navigation");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = navigation.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navigation.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navigation.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script></body>
+</html>
