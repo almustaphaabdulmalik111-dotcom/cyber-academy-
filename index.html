@@ -1,436 +1,1914 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CyberAcademy helps students learn cybersecurity, ethical hacking, and software engineering through courses and practical challenges.">
+  <meta name="description" content="CyberAcademy helps students learn cybersecurity, ethical hacking, networking, programming and software engineering.">
+  <meta name="theme-color" content="#080d1a">
+
   <title>CyberAcademy | Learn. Build. Secure.</title>
+
   <style>
     :root {
-      --bg: #080d18;
-      --panel: #111a2b;
-      --blue: #3b82f6;
-      --cyan: #22d3ee;
-      --text: #f1f5f9;
-      --muted: #9caec4;
-      --border: #24334a;
-    }* { box-sizing: border-box; margin: 0; padding: 0; }
+      --bg: #080d1a;
+      --surface: #10182a;
+      --surface-light: #162139;
+      --text: #f1f5ff;
+      --muted: #a2aec7;
+      --primary: #6c7cff;
+      --secondary: #28e0b3;
+      --border: rgba(255,255,255,.10);
+      --radius: 18px;
+      --max-width: 1180px;
+    }
 
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-a { color: inherit; text-decoration: none; }
-button { font: inherit; cursor: pointer; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
 
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(8,13,24,.96);
-  border-bottom: 1px solid var(--border);
-}
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-.nav {
-  max-width: 1150px;
-  margin: auto;
-  padding: 16px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
+    body, button, input, textarea, select {
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-.logo { font-size: 21px; font-weight: 800; }
-.logo span { color: var(--cyan); }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-nav { display: flex; align-items: center; gap: 20px; }
-nav a { color: var(--muted); font-size: 14px; }
-nav a:hover { color: var(--cyan); }
+    button, input, textarea, select {
+      font-size: 1rem;
+    }
 
-.menu-button {
-  display: none;
-  background: transparent;
-  color: white;
-  border: 1px solid var(--border);
-  padding: 7px 11px;
-  border-radius: 8px;
-}
+    button {
+      cursor: pointer;
+    }
 
-.hero {
-  max-width: 1150px;
-  margin: auto;
-  padding: 76px 20px 65px;
-  display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  align-items: center;
-  gap: 40px;
-}
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 3px solid var(--secondary);
+      outline-offset: 3px;
+    }
 
-.eyebrow {
-  color: var(--cyan);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
+    img {
+      max-width: 100%;
+    }
 
-h1 {
-  font-size: clamp(38px, 6vw, 65px);
-  line-height: 1.1;
-  letter-spacing: -2px;
-  margin-bottom: 22px;
-}
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
 
-h1 span {
-  background: linear-gradient(90deg, var(--cyan), #818cf8);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+    .section {
+      padding: 82px 0;
+    }
 
-.hero p { color: var(--muted); max-width: 580px; font-size: 16px; }
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
 
-.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .section-heading h2 {
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
 
-.btn {
-  display: inline-block;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  padding: 12px 18px;
-  font-weight: 700;
-  font-size: 14px;
-}
+    .section-heading p {
+      color: var(--muted);
+    }
 
-.primary { background: var(--blue); border-color: var(--blue); color: white; }
-.secondary { background: var(--panel); }
-.btn:hover { filter: brightness(1.15); }
+    .eyebrow {
+      display: inline-block;
+      color: var(--secondary);
+      background: rgba(40,224,179,.09);
+      border: 1px solid rgba(40,224,179,.22);
+      padding: 7px 12px;
+      border-radius: 30px;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      margin-bottom: 18px;
+    }
 
-.terminal {
-  background: #0d1524;
-  border: 1px solid #2b405d;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 25px 80px #0005;
-}
+    .gradient {
+      background: linear-gradient(100deg, #8b9aff, #35e8c0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-.terminal-top {
-  padding: 13px 16px;
-  background: #152136;
-  color: var(--muted);
-  font-size: 12px;
-  border-bottom: 1px solid var(--border);
-}
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      border-radius: 11px;
+      padding: 12px 19px;
+      font-weight: 700;
+      transition: transform .2s, opacity .2s, background .2s;
+    }
 
-.terminal-body {
-  padding: 25px 20px;
-  font-family: monospace;
-  font-size: 13px;
-  overflow-wrap: anywhere;
-}
+    .btn:hover {
+      transform: translateY(-2px);
+    }
 
-.terminal-body p { margin: 10px 0; color: #a5f3fc; font-size: 13px; }
-.terminal-body .dim { color: #91a2bb; }
-.terminal-body .green { color: #4ade80; }
+    .btn-primary {
+      color: #07111c;
+      background: var(--secondary);
+    }
 
-.section { padding: 65px 20px; }
-.section.alt { background: #0b1220; }
-.container { max-width: 1150px; margin: auto; }
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+      border-color: var(--border);
+    }
 
-.section-heading { margin-bottom: 30px; }
-.section-heading h2 { font-size: clamp(27px, 4vw, 36px); margin-bottom: 8px; }
-.section-heading p { color: var(--muted); }
+    .btn-small {
+      padding: 9px 13px;
+      font-size: .88rem;
+    }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
+    .muted {
+      color: var(--muted);
+    }
 
-.card {
-  padding: 23px;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  border-radius: 14px;
-  transition: transform .2s, border-color .2s;
-}
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,13,26,.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
 
-.card:hover { transform: translateY(-4px); border-color: var(--blue); }
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-.icon {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: #1c3150;
-  font-size: 24px;
-  margin-bottom: 17px;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
 
-.card h3 { font-size: 18px; margin-bottom: 9px; }
-.card p { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+    .brand-icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      color: var(--secondary);
+      background: rgba(40,224,179,.12);
+      border: 1px solid rgba(40,224,179,.25);
+      font-size: 1.35rem;
+    }
 
-.card-link { color: var(--cyan); font-size: 14px; font-weight: 700; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
 
-.roadmap {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-}
+    .nav-links a {
+      color: var(--muted);
+      font-size: .92rem;
+      transition: color .2s;
+    }
 
-.step {
-  padding: 20px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-}
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--secondary);
+    }
 
-.step strong { display: block; color: var(--cyan); margin-bottom: 8px; }
-.step p { color: var(--muted); font-size: 14px; }
+    .menu-toggle {
+      display: none;
+      width: 43px;
+      height: 43px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      background: var(--surface);
+      font-size: 1.3rem;
+    }
 
-.cta {
-  text-align: center;
-  background: linear-gradient(135deg, #10284a, #111a2b);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 40px 20px;
-}
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 95px 0 85px;
+      background:
+        radial-gradient(ellipse at 85% 10%, rgba(108,124,255,.18), transparent 38%),
+        radial-gradient(ellipse at 5% 75%, rgba(40,224,179,.08), transparent 35%);
+    }
 
-.cta h2 { font-size: clamp(25px, 4vw, 36px); margin-bottom: 10px; }
-.cta p { color: var(--muted); margin-bottom: 22px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 55px;
+    }
 
-footer {
-  border-top: 1px solid var(--border);
-  padding: 25px 20px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 13px;
-}
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.6rem);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
 
-footer p + p { margin-top: 6px; }
+    .hero-description {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 27px;
+    }
 
-@media (max-width: 760px) {
-  .hero { grid-template-columns: 1fr; padding-top: 55px; }
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .roadmap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .menu-button { display: block; }
-  nav {
-    display: none;
-    position: absolute;
-    top: 62px;
-    left: 0;
-    right: 0;
-    padding: 20px;
-    background: var(--panel);
-    border-bottom: 1px solid var(--border);
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  nav.open { display: flex; }
-}
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
 
-@media (max-width: 430px) {
-  .grid, .roadmap { grid-template-columns: 1fr; }
-  h1 { letter-spacing: -1px; }
-  .section { padding: 48px 16px; }
-  .hero { padding-left: 16px; padding-right: 16px; }
-}
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
 
+    .hero-trust span::before {
+      content: "✓";
+      color: var(--secondary);
+      margin-right: 7px;
+      font-weight: 800;
+    }
+
+    .terminal {
+      background: #0d1423;
+      border: 1px solid rgba(108,124,255,.28);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0,0,0,.3);
+      transform: rotate(1deg);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ff6b78;
+    }
+
+    .terminal-dot:nth-child(2) {
+      background: #ffd166;
+    }
+
+    .terminal-dot:nth-child(3) {
+      background: #35e8a1;
+    }
+
+    .terminal-title {
+      margin-left: 8px;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    .terminal-content {
+      padding: 25px;
+      min-height: 280px;
+      font-family: monospace;
+      font-size: .91rem;
+      overflow-wrap: anywhere;
+    }
+
+    .terminal-content p {
+      margin-bottom: 14px;
+    }
+
+    .terminal-green {
+      color: var(--secondary);
+    }
+
+    .terminal-purple {
+      color: #a5adff;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 35px;
+    }
+
+    .stat-card {
+      padding: 23px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.8rem;
+      margin-bottom: 4px;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .category-card {
+      display: block;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: transform .2s, border-color .2s;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+
+    .category-icon {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(108,124,255,.13);
+      font-size: 1.6rem;
+      margin-bottom: 17px;
+    }
+
+    .category-card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 8px;
+    }
+
+    .category-card p {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .course-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .field {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 14px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .field::placeholder {
+      color: #8491ac;
+    }
+
+    .search-field {
+      flex: 1 1 250px;
+    }
+
+    .filter-field {
+      flex: 0 1 210px;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .course-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .course-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(108,124,255,.65);
+    }
+
+    .course-art {
+      display: grid;
+      place-items: center;
+      min-height: 130px;
+      background: linear-gradient(135deg, #19264a, #122c39);
+      font-size: 2.6rem;
+    }
+
+    .course-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 21px;
+    }
+
+    .course-category {
+      color: var(--secondary);
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-bottom: 8px;
+    }
+
+    .course-content h3 {
+      font-size: 1.12rem;
+      margin-bottom: 9px;
+    }
+
+    .course-content p {
+      color: var(--muted);
+      font-size: .91rem;
+      margin-bottom: 17px;
+    }
+
+    .course-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: .8rem;
+      margin-bottom: 18px;
+    }
+
+    .course-content .btn {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      padding: 35px;
+      text-align: center;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+    }
+
+    .content-panel {
+      padding: 27px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+    }
+
+    .content-panel h3 {
+      margin-bottom: 12px;
+    }
+
+    .content-panel p {
+      color: var(--muted);
+    }
+
+    .note-form {
+      display: grid;
+      gap: 13px;
+      margin-top: 17px;
+    }
+
+    .note-form textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .note-list {
+      display: grid;
+      gap: 13px;
+      margin-top: 20px;
+    }
+
+    .note-item {
+      padding: 17px;
+      border-radius: 12px;
+      background: var(--surface-light);
+      border: 1px solid var(--border);
+    }
+
+    .note-item p {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .note-item small {
+      display: block;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .note-item button {
+      margin-top: 12px;
+    }
+
+    .progress-track {
+      height: 10px;
+      border-radius: 20px;
+      background: #26314b;
+      overflow: hidden;
+      margin: 14px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: inherit;
+      transition: width .3s;
+    }
+
+    .progress-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .progress-row:last-child {
+      border-bottom: 0;
+    }
+
+    .progress-row span {
+      overflow-wrap: anywhere;
+    }
+
+    .footer {
+      padding: 45px 0 25px;
+      border-top: 1px solid var(--border);
+      background: #070b15;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer h3 {
+      margin-bottom: 12px;
+    }
+
+    .footer p,
+    .footer a {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer a:hover {
+      color: var(--secondary);
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .83rem;
+    }
+
+    .notice {
+      display: none;
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 300;
+      max-width: calc(100% - 36px);
+      padding: 14px 18px;
+      border: 1px solid rgba(40,224,179,.35);
+      border-radius: 12px;
+      color: var(--text);
+      background: #142b2a;
+      box-shadow: 0 10px 35px rgba(0,0,0,.3);
+    }
+
+    .notice.show {
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .terminal {
+        max-width: 650px;
+        transform: none;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .course-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        gap: 13px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .navbar {
+        min-height: 68px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        padding: 20px 5%;
+        background: #0c1323;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .hero {
+        padding: 65px 0;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-field {
+        flex: 1 1 100%;
+      }
+
+      .content-panel {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-trust {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .stats {
+        gap: 10px;
+      }
+
+      .stat-card {
+        padding: 16px;
+      }
+
+      .stat-card strong {
+        font-size: 1.45rem;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="nav">
-      <a class="logo" href="#home">Cyber<span>Academy</span></a>
-      <button class="menu-button" id="menuButton" aria-expanded="false" aria-controls="navigation">Menu ☰</button>
-      <nav id="navigation">
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="#home" aria-label="CyberAcademy home">
+        <span class="brand-icon">⌘</span>
+        <span>Cyber<span class="gradient">Academy</span></span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >☰</button>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#categories">Learning Paths</a>
         <a href="#courses">Courses</a>
-        <a href="#labs">Practical Labs</a>
-        <a href="#roadmap">Learning Roadmap</a>
-        <a href="#about">About Us</a>
+        <a href="#notes">My Notes</a>
+        <a href="#dashboard">My Progress</a>
       </nav>
     </div>
-  </header>  <main>
+  </header>
+
+  <main>
     <section class="hero" id="home">
-      <div>
-        <div class="eyebrow">Your journey into technology starts here</div>
-        <h1>Learn Skills.<br>Build the Future.<br><span>Secure the Digital World.</span></h1>
-        <p>
-          Learn cybersecurity and software engineering from the fundamentals
-          to advanced topics. Develop practical skills through guided lessons,
-          coding exercises, and authorised security challenges.
-        </p>
-        <div class="actions">
-          <a class="btn primary" href="#courses">Explore Courses →</a>
-          <a class="btn secondary" href="#roadmap">View Learning Roadmap</a>
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">YOUR JOURNEY INTO TECHNOLOGY STARTS HERE</span>
+
+            <h1>
+              Learn Skills.<br>
+              Build the Future.<br>
+              <span class="gradient">Secure the Digital World.</span>
+            </h1>
+
+            <p class="hero-description">
+              Learn cybersecurity and software engineering through structured
+              lessons, practical exercises, programming fundamentals and
+              responsible security education.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#courses">Explore Courses →</a>
+              <a class="btn btn-secondary" href="#categories">Explore Learning Paths</a>
+            </div>
+
+            <div class="hero-trust">
+              <span>Learn at your own pace</span>
+              <span>Beginner-friendly lessons</span>
+              <span>Practice responsibly</span>
+            </div>
+          </div>
+
+          <div class="terminal" aria-label="Decorative programming terminal">
+            <div class="terminal-bar">
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+              <span class="terminal-title">cyberacademy — learning terminal</span>
+            </div>
+
+            <div class="terminal-content">
+              <p class="terminal-green">$ initialize_learning</p>
+              <p>Loading knowledge modules...</p>
+              <p class="terminal-purple">[01] Cybersecurity fundamentals</p>
+              <p class="terminal-purple">[02] Networking and Linux</p>
+              <p class="terminal-purple">[03] Software development</p>
+              <p class="terminal-green">Learning environment: READY</p>
+              <p>Choose a course and begin your journey.</p>
+              <p class="terminal-green">$ <span aria-hidden="true">_</span></p>
+            </div>
+          </div>
         </div>
-      </div>  <div class="terminal" aria-label="Decorative cybersecurity terminal illustration">
-    <div class="terminal-top">● ● ● &nbsp; cyberacademy — learning terminal</div>
-    <div class="terminal-body">
-      <p class="dim">// Your learning journey begins</p>
-      <p><span class="green">student@academy</span>:~$ start-learning</p>
-      <p>Loading cybersecurity fundamentals...</p>
-      <p class="green">[OK] Networking fundamentals</p>
-      <p class="green">[OK] Linux essentials</p>
-      <p class="green">[OK] Programming foundations</p>
-      <p class="dim">Choose a path. Practise. Build. Improve.</p>
-      <p><span class="green">student@academy</span>:~$ <span aria-hidden="true">_</span></p>
-    </div>
-  </div>
-</section>
 
-<section class="section alt" id="courses">
-  <div class="container">
-    <div class="section-heading">
-      <h2>Explore Our Learning Paths</h2>
-      <p>Build a strong foundation, then develop specialised skills.</p>
-    </div>
-
-    <div class="grid">
-      <article class="card">
-        <div class="icon">🛡️</div>
-        <h3>Cybersecurity Fundamentals</h3>
-        <p>Learn security principles, computer systems, networking, threats, and risk management.</p>
-        <a class="card-link" href="#roadmap">Explore learning path →</a>
-      </article>
-
-      <article class="card">
-        <div class="icon">🔐</div>
-        <h3>Ethical Hacking</h3>
-        <p>Understand authorised security testing, vulnerability assessment, and responsible reporting.</p>
-        <a class="card-link" href="#labs">Explore practical skills →</a>
-      </article>
-
-      <article class="card">
-        <div class="icon">🌐</div>
-        <h3>Network Security</h3>
-        <p>Study IP addresses, DNS, network protocols, firewalls, and secure configurations.</p>
-        <a class="card-link" href="#roadmap">Explore learning path →</a>
-      </article>
-
-      <article class="card">
-        <div class="icon">💻</div>
-        <h3>Software Engineering</h3>
-        <p>Learn programming, data structures, debugging, testing, and software design.</p>
-        <a class="card-link" href="#roadmap">Explore learning path →</a>
-      </article>
-
-      <article class="card">
-        <div class="icon">⌨️</div>
-        <h3>Web Development</h3>
-        <p>Build websites and applications using HTML, CSS, JavaScript, APIs, and databases.</p>
-        <a class="card-link" href="#roadmap">Explore learning path →</a>
-      </article>
-
-      <article class="card">
-        <div class="icon">🔎</div>
-        <h3>Defensive Security</h3>
-        <p>Learn log analysis, threat detection, incident response, and digital forensics fundamentals.</p>
-        <a class="card-link" href="#labs">Explore practical skills →</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="labs">
-  <div class="container">
-    <div class="section-heading">
-      <h2>Learn by Doing</h2>
-      <p>Practical learning will help turn knowledge into useful skills.</p>
-    </div>
-
-    <div class="grid">
-      <article class="card">
-        <div class="icon">🐧</div>
-        <h3>Linux Challenges</h3>
-        <p>Practise terminal commands, permissions, files, and system administration.</p>
-        <span class="card-link">Planned training module</span>
-      </article>
-
-      <article class="card">
-        <div class="icon">🐍</div>
-        <h3>Programming Exercises</h3>
-        <p>Write code, solve problems, and practise debugging with guided exercises.</p>
-        <span class="card-link">Planned training module</span>
-      </article>
-
-      <article class="card">
-        <div class="icon">🚩</div>
-        <h3>CTF Challenges</h3>
-        <p>Solve cybersecurity puzzles in controlled environments designed for learning.</p>
-        <span class="card-link">Planned training module</span>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section alt" id="roadmap">
-  <div class="container">
-    <div class="section-heading">
-      <h2>Your Learning Roadmap</h2>
-      <p>Follow a structured path from beginner to advanced study.</p>
-    </div>
-
-    <div class="roadmap">
-      <div class="step">
-        <strong>01 · Beginner</strong>
-        <h3>Learn the Basics</h3>
-        <p>Computers, operating systems, networking, and programming fundamentals.</p>
+        <div class="stats">
+          <div class="stat-card">
+            <strong id="courseCount">0</strong>
+            <span>Learning modules</span>
+          </div>
+          <div class="stat-card">
+            <strong>4</strong>
+            <span>Learning paths</span>
+          </div>
+          <div class="stat-card">
+            <strong>100%</strong>
+            <span>Self-paced learning</span>
+          </div>
+          <div class="stat-card">
+            <strong>24/7</strong>
+            <span>Learn when you can</span>
+          </div>
+        </div>
       </div>
-      <div class="step">
-        <strong>02 · Foundation</strong>
-        <h3>Build Skills</h3>
-        <p>Linux, Python, web development, databases, and essential security principles.</p>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">CHOOSE YOUR DIRECTION</span>
+          <h2>Explore learning paths</h2>
+          <p>
+            Build a strong foundation, learn useful tools and develop skills
+            step by step.
+          </p>
+        </div>
+
+        <div class="category-grid">
+          <a class="category-card" href="#courses" data-category-link="Cybersecurity">
+            <div class="category-icon">🛡️</div>
+            <h3>Cybersecurity</h3>
+            <p>Understand digital threats, defensive security and safe testing.</p>
+          </a>
+
+          <a class="category-card" href="#courses" data-category-link="Networking">
+            <div class="category-icon">🌐</div>
+            <h3>Networking</h3>
+            <p>Learn IP addresses, protocols, networks and connectivity.</p>
+          </a>
+
+          <a class="category-card" href="#courses" data-category-link="Programming">
+            <div class="category-icon">💻</div>
+            <h3>Programming</h3>
+            <p>Build coding skills with practical beginner-friendly lessons.</p>
+          </a>
+
+          <a class="category-card" href="#courses" data-category-link="Software Engineering">
+            <div class="category-icon">⚙️</div>
+            <h3>Software Engineering</h3>
+            <p>Explore web development, databases and software design.</p>
+          </a>
+        </div>
       </div>
-      <div class="step">
-        <strong>03 · Intermediate</strong>
-        <h3>Practise</h3>
-        <p>Projects, code testing, defensive security, and authorised training labs.</p>
+    </section>
+
+    <section class="section" id="courses">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">YOUR LEARNING LIBRARY</span>
+          <h2>Explore the courses</h2>
+          <p>
+            Search for a topic, choose a learning path, and open a course
+            to study its lessons.
+          </p>
+        </div>
+
+        <div class="course-tools">
+          <input
+            class="field search-field"
+            id="courseSearch"
+            type="search"
+            placeholder="Search courses, topics or skills..."
+            aria-label="Search courses"
+          >
+
+          <select class="field filter-field" id="categoryFilter" aria-label="Filter courses by category">
+            <option value="All">All categories</option>
+            <option value="Cybersecurity">Cybersecurity</option>
+            <option value="Networking">Networking</option>
+            <option value="Programming">Programming</option>
+            <option value="Software Engineering">Software Engineering</option>
+            <option value="Linux">Linux</option>
+          </select>
+        </div>
+
+        <p class="muted" id="courseResults" aria-live="polite"></p>
+
+        <div class="course-grid" id="courseGrid">
+          <div class="empty-state">Loading courses...</div>
+        </div>
       </div>
-      <div class="step">
-        <strong>04 · Advanced</strong>
-        <h3>Specialise</h3>
-        <p>Choose a career path, complete advanced projects, and build a portfolio.</p>
+    </section>
+
+    <section class="section" id="courseDetails" hidden>
+      <div class="container">
+        <button class="btn btn-secondary" id="backToCourses" type="button">
+          ← Back to courses
+        </button>
+
+        <div class="section-heading" style="margin-top:28px">
+          <span class="eyebrow" id="detailCategory">COURSE</span>
+          <h2 id="detailTitle">Course title</h2>
+          <p id="detailDescription"></p>
+        </div>
+
+        <div class="content-panel">
+          <h3>What you will learn</h3>
+          <ul id="detailObjectives" style="padding-left:22px; color:var(--muted)"></ul>
+        </div>
+
+        <div class="content-panel">
+          <h3>Course lessons</h3>
+          <p class="muted" style="margin-bottom:16px">
+            Open each lesson to read its learning material. Mark lessons
+            complete as you progress.
+          </p>
+          <div id="lessonList" class="progress-list"></div>
+        </div>
+
+        <div class="content-panel" id="lessonContent" hidden>
+          <span class="eyebrow">CURRENT LESSON</span>
+          <h3 id="lessonTitle"></h3>
+          <div id="lessonBody"></div>
+          <button class="btn btn-primary" id="completeLesson" type="button" style="margin-top:20px">
+            Mark lesson complete
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="notes">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">YOUR PERSONAL STUDY SPACE</span>
+          <h2>My learning notes</h2>
+          <p>
+            Record important concepts, save study notes, and review
+            what you have learned.
+          </p>
+        </div>
+
+        <div class="content-panel">
+          <h3>Create a note</h3>
+          <form id="noteForm" class="note-form">
+            <label for="noteTitle">Note title</label>
+            <input
+              class="field"
+              id="noteTitle"
+              type="text"
+              placeholder="Example: Networking fundamentals"
+              maxlength="100"
+              required
+            >
+
+            <label for="noteText">Your notes</label>
+            <textarea
+              class="field"
+              id="noteText"
+              placeholder="Write what you learned..."
+              maxlength="10000"
+              required
+            ></textarea>
+
+            <button class="btn btn-primary" type="submit">
+              Save note
+            </button>
+          </form>
+        </div>
+
+        <div class="content-panel">
+          <h3>Saved notes</h3>
+          <p class="muted">
+            Notes are stored in this browser on this device.
+            Clearing browser data may remove them.
+          </p>
+
+          <div id="noteList" class="note-list">
+            <p class="muted">Your saved notes will appear here.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dashboard">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">YOUR LEARNING JOURNEY</span>
+          <h2>My progress dashboard</h2>
+          <p>
+            Review your learning activity and see which lessons
+            you have completed.
+          </p>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <strong id="completedCount">0</strong>
+            <span>Lessons completed</span>
+          </div>
+
+          <div class="stat-card">
+            <strong id="totalLessonCount">0</strong>
+            <span>Available lessons</span>
+          </div>
+
+          <div class="stat-card">
+            <strong id="progressPercent">0%</strong>
+            <span>Overall progress</span>
+          </div>
+
+          <div class="stat-card">
+            <strong id="notesCount">0</strong>
+            <span>Saved notes</span>
+          </div>
+        </div>
+
+        <div class="content-panel" style="margin-top:24px">
+          <h3>Overall completion</h3>
+          <div
+            class="progress-track"
+            role="progressbar"
+            id="overallProgressBar"
+            aria-label="Overall learning progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <div class="progress-fill" id="overallProgressFill"></div>
+          </div>
+          <p class="muted" id="progressMessage">
+            Start a course to begin tracking your progress.
+          </p>
+        </div>
+
+        <div class="content-panel">
+          <h3>Course progress</h3>
+          <div id="courseProgressList" class="progress-list">
+            <p class="muted">Your course progress will appear here.</p>
+          </div>
+        </div>
+
+        <div class="content-panel">
+          <h3>Study responsibly</h3>
+          <p>
+            Practice security concepts only on systems you own or have
+            explicit permission to test. Use legal learning labs and
+            defensive exercises to build your skills.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#home">
+            <span class="brand-icon">⌘</span>
+            <span>Cyber<span class="gradient">Academy</span></span>
+          </a>
+
+          <p style="margin-top:16px; max-width:360px">
+            Learn cybersecurity, programming, networking and software
+            engineering one step at a time.
+          </p>
+        </div>
+
+        <div>
+          <h3>Explore</h3>
+          <div class="footer-links">
+            <a href="#categories">Learning paths</a>
+            <a href="#courses">Course library</a>
+            <a href="#notes">My notes</a>
+          </div>
+        </div>
+
+        <div>
+          <h3>Your journey</h3>
+          <div class="footer-links">
+            <a href="#dashboard">Progress dashboard</a>
+            <a href="#home">Back to top ↑</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © <span id="currentYear">2026</span> CyberAcademy.
+          Learn responsibly. Build confidently.
+        </p>
       </div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<section class="section" id="about">
-  <div class="container">
-    <div class="cta">
-      <h2>Build Your Future in Technology</h2>
-      <p>Learn consistently, practise responsibly, and create projects that demonstrate your skills.</p>
-      <a class="btn primary" href="#courses">Explore Learning Paths →</a>
-    </div>
-  </div>
-</section>
+  <div class="notice" id="notice" role="status" aria-live="polite"></div>
+<script>
+"use strict";
 
-  </main>  <footer>
-    <p><strong>CyberAcademy</strong> — Learn. Build. Secure.</p>
-    <p>Educational content for cybersecurity students and software engineers.</p>
-    <p>Practise security testing only on systems you own or have permission to test.</p>
-    <p>© <span id="year">2026</span> CyberAcademy</p>
-  </footer>  <script>
-    const menuButton = document.getElementById("menuButton");
-    const navigation = document.getElementById("navigation");
+/* =========================
+   1. COURSE LIBRARY
+========================= */
 
-    menuButton.addEventListener("click", () => {
-      const isOpen = navigation.classList.toggle("open");
-      menuButton.setAttribute("aria-expanded", String(isOpen));
-    });
+const courses = [
+  {
+    id: "cybersecurity",
+    title: "Cybersecurity Fundamentals",
+    category: "Cybersecurity",
+    icon: "🛡️",
+    level: "Beginner",
+    duration: "3 lessons",
+    description: "Understand security principles, common threats, and ways to protect digital systems.",
+    objectives: [
+      "Understand confidentiality, integrity, and availability.",
+      "Recognize common online threats.",
+      "Learn basic security protection methods."
+    ],
+    lessons: [
+      {
+        title: "Introduction to Cybersecurity",
+        body: [
+          "Cybersecurity is the practice of protecting computers, networks, applications, and information from unauthorized access or damage.",
+          "Three important principles are confidentiality, integrity, and availability. Confidentiality limits information access to authorized people. Integrity protects information from unauthorized changes. Availability means authorized users can access systems when needed.",
+          "Start by learning strong password practices, software updates, backups, and multi-factor authentication."
+        ]
+      },
+      {
+        title: "Common Security Threats",
+        body: [
+          "Phishing attempts trick people into sharing information or opening unsafe links. Malware is software designed to perform unwanted or harmful actions. Weak passwords and outdated software can also create security risks.",
+          "Check website addresses carefully, avoid unexpected attachments, update your devices, and report suspicious messages."
+        ]
+      },
+      {
+        title: "Protecting Digital Systems",
+        body: [
+          "Use unique passwords, a reputable password manager, and multi-factor authentication where available.",
+          "Install updates, back up important files, restrict account permissions, and use trusted security tools.",
+          "Security is an ongoing process. Review settings regularly and learn how to respond to incidents."
+        ]
+      }
+    ]
+  },
+  {
+    id: "networking",
+    title: "Computer Networking",
+    category: "Networking",
+    icon: "🌐",
+    level: "Beginner",
+    duration: "3 lessons",
+    description: "Learn how devices communicate and how network services work.",
+    objectives: [
+      "Understand IP addresses and networks.",
+      "Recognize common network protocols.",
+      "Learn basic network troubleshooting."
+    ],
+    lessons: [
+      {
+        title: "Networking Basics",
+        body: [
+          "A computer network connects devices so they can exchange data and share resources.",
+          "A local area network (LAN) connects devices within a limited area. A wide area network (WAN) covers a larger geographical area.",
+          "Routers direct traffic between networks, while switches commonly connect devices within a local network."
+        ]
+      },
+      {
+        title: "IP Addresses and DNS",
+        body: [
+          "An IP address identifies a network interface for communication. IPv4 addresses use a 32-bit format, while IPv6 uses a 128-bit format.",
+          "The Domain Name System (DNS) helps translate human-readable domain names into information used to locate internet services.",
+          "Learn these concepts using your own device or an authorized practice environment."
+        ]
+      },
+      {
+        title: "Network Protocols",
+        body: [
+          "Protocols define how devices communicate. HTTP and HTTPS are used for web communication. DNS helps resolve domain names. TCP provides reliable data delivery, while UDP is used where low overhead or timing matters.",
+          "When troubleshooting, check connectivity, network configuration, DNS resolution, and whether the intended service is available."
+        ]
+      }
+    ]
+  },
+  {
+    id: "linux",
+    title: "Linux Fundamentals",
+    category: "Linux",
+    icon: "🐧",
+    level: "Beginner",
+    duration: "3 lessons",
+    description: "Explore the Linux operating system, terminal, files, and permissions.",
+    objectives: [
+      "Understand the Linux file system.",
+      "Learn introductory terminal commands.",
+      "Recognize users and file permissions."
+    ],
+    lessons: [
+      {
+        title: "Introduction to Linux",
+        body: [
+          "Linux is an operating-system kernel used in servers, personal computers, embedded systems, and many security learning environments.",
+          "A Linux distribution combines the kernel with utilities and applications. Examples include Ubuntu, Debian, and Fedora.",
+          "The terminal lets you interact with the system by entering commands."
+        ]
+      },
+      {
+        title: "Files and Directories",
+        body: [
+          "Common introductory commands include pwd to show the current directory, ls to list files, and cd to change directories.",
+          "Use mkdir to create a directory and cp to copy files. Read command documentation before using unfamiliar options.",
+          "Practise with sample files in a directory you control."
+        ]
+      },
+      {
+        title: "Users and Permissions",
+        body: [
+          "Linux uses users and groups to manage access to files and system resources.",
+          "Read, write, and execute permissions control what users can do with files and directories.",
+          "Use the principle of least privilege: give accounts only the permissions they need."
+        ]
+      }
+    ]
+  },
+  {
+    id: "python",
+    title: "Python Programming",
+    category: "Programming",
+    icon: "🐍",
+    level: "Beginner",
+    duration: "3 lessons",
+    description: "Learn programming fundamentals with Python.",
+    objectives: [
+      "Understand variables and data types.",
+      "Use conditions and loops.",
+      "Create simple functions."
+    ],
+    lessons: [
+      {
+        title: "Your First Python Program",
+        body: [
+          "Python is a general-purpose programming language used for automation, data analysis, web development, and many other tasks.",
+          "A simple program is print(\"Hello, world!\"). The print function displays information.",
+          "Practise writing small programs and reading the error messages when something goes wrong."
+        ]
+      },
+      {
+        title: "Variables and Conditions",
+        body: [
+          "Variables refer to values. Common data types include strings, integers, floating-point numbers, and booleans.",
+          "Conditions use if, elif, and else to select which statements should run.",
+          "Test different inputs to understand how your program behaves."
+        ]
+      },
+      {
+        title: "Loops and Functions",
+        body: [
+          "Loops repeat instructions. A for loop can iterate through a sequence, while a while loop continues as long as its condition is true.",
+          "Functions group reusable instructions. Define a function with def, give it a clear name, and use parameters when needed.",
+          "Small functions make programs easier to test and maintain."
+        ]
+      }
+    ]
+  },
+  {
+    id: "webdev",
+    title: "Web Development",
+    category: "Software Engineering",
+    icon: "🌍",
+    level: "Beginner",
+    duration: "3 lessons",
+    description: "Learn how websites are structured, styled, and made interactive.",
+    objectives: [
+      "Understand HTML structure.",
+      "Style pages with CSS.",
+      "Add interactivity using JavaScript."
+    ],
+    lessons: [
+      {
+        title: "HTML Structure",
+        body: [
+          "HTML describes the structure and meaning of webpage content.",
+          "Elements such as headings, paragraphs, links, lists, and forms help organize a page.",
+          "Use semantic elements such as header, nav, main, section, and footer when appropriate."
+        ]
+      },
+      {
+        title: "CSS Styling",
+        body: [
+          "CSS controls the presentation of a webpage, including colours, spacing, typography, borders, and layout.",
+          "Flexbox and Grid help arrange content. Media queries allow layouts to adapt to different screen sizes.",
+          "Test your design on both mobile and desktop screens."
+        ]
+      },
+      {
+        title: "JavaScript Basics",
+        body: [
+          "JavaScript adds behaviour to webpages, such as responding to clicks, validating forms, and updating content.",
+          "Use event listeners to respond to user actions and update the DOM carefully.",
+          "Keep user-facing messages clear and test interactions with different inputs."
+        ]
+      }
+    ]
+  },
+  {
+    id: "database",
+    title: "Database Fundamentals",
+    category: "Software Engineering",
+    icon: "🗄️",
+    level: "Beginner",
+    duration: "3 lessons",
+    description: "Understand how applications store and organize information.",
+    objectives: [
+      "Understand tables and records.",
+      "Learn the role of SQL.",
+      "Recognize basic database security practices."
+    ],
+    lessons: [
+      {
+        title: "What Is a Database?",
+        body: [
+          "A database organizes information so applications can store, retrieve, and update it efficiently.",
+          "In a relational database, tables contain rows and columns. Keys help identify records and connect related tables.",
+          "Good data design reduces unnecessary duplication and helps maintain consistency."
+        ]
+      },
+      {
+        title: "Introduction to SQL",
+        body: [
+          "SQL is commonly used to work with relational databases.",
+          "SELECT retrieves data, INSERT adds records, UPDATE changes records, and DELETE removes records.",
+          "Practise using a sample database and understand the effect of each statement before running it."
+        ]
+      },
+      {
+        title: "Database Security",
+        body: [
+          "Restrict database access, use strong authentication, apply updates, and maintain tested backups.",
+          "Applications should use parameterized queries rather than building SQL commands by concatenating untrusted input.",
+          "Avoid storing plain-text passwords. Use an established password-hashing approach on a properly configured server."
+        ]
+      }
+    ]
+  },
+  {
+    id: "htmlcss",
+    title: "HTML and CSS Essentials",
+    category: "Programming",
+    icon: "🎨",
+    level: "Beginner",
+    duration: "3 lessons",
+    description: "Build accessible page structures and responsive designs.",
+    objectives: [
+      "Write semantic HTML.",
+      "Use CSS layout tools.",
+      "Create accessible responsive pages."
+    ],
+    lessons: [
+      {
+        title: "Semantic HTML",
+        body: [
+          "Semantic HTML communicates the purpose of content to browsers and assistive technologies.",
+          "Use headings in a logical hierarchy and provide labels for form fields.",
+          "Links should navigate, while buttons should perform actions."
+        ]
+      },
+      {
+        title: "Responsive Layouts",
+        body: [
+          "Responsive design helps content work across phones, tablets, and desktops.",
+          "Use flexible widths, CSS Grid, Flexbox, and media queries instead of assuming one screen size.",
+          "Test your page at narrow widths and check that controls remain usable."
+        ]
+      },
+      {
+        title: "Accessibility Basics",
+        body: [
+          "Provide readable contrast, keyboard navigation, meaningful link text, and labels for interactive controls.",
+          "Use alternative text for meaningful images and avoid relying on colour alone to convey information.",
+          "Accessibility makes a website easier for more people to use."
+        ]
+      }
+    ]
+  },
+  {
+    id: "javascript",
+    title: "JavaScript Essentials",
+    category: "Programming",
+    icon: "⚡",
+    level: "Beginner",
+    duration: "3 lessons",
+    description: "Learn variables, functions, events, and webpage interaction.",
+    objectives: [
+      "Understand basic JavaScript syntax.",
+      "Work with arrays and functions.",
+      "Respond to browser events."
+    ],
+    lessons: [
+      {
+        title: "Variables and Data",
+        body: [
+          "Use const for bindings that will not be reassigned and let when reassignment is needed.",
+          "JavaScript supports strings, numbers, booleans, arrays, objects, and other data types.",
+          "Use descriptive names and keep your code easy to read."
+        ]
+      },
+      {
+        title: "Functions and Arrays",
+        body: [
+          "Functions group reusable logic. Arrays store ordered collections of values.",
+          "Array methods such as map, filter, and find help transform or locate information.",
+          "Practise with small examples before combining several concepts."
+        ]
+      },
+      {
+        title: "Events and the DOM",
+        body: [
+          "The Document Object Model (DOM) represents a webpage as objects that JavaScript can access.",
+          "addEventListener lets code respond to events such as clicks and form submissions.",
+          "Use textContent for plain text updates and avoid inserting untrusted content as HTML."
+        ]
+      }
+    ]
+  }
+];
 
-    navigation.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        navigation.classList.remove("open");
-        menuButton.setAttribute("aria-expanded", "false");
-      });
-    });
+/* =========================
+   2. SAFE LOCAL STORAGE
+========================= */
 
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script></body>
+function readStored(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw === null ? fallback : JSON.parse(raw);
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function saveStored(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+    return true;
+  } catch (error) {
+    showNotice("Could not save data in this browser.");
+    return false;
+  }
+}
+
+let completedLessons = readStored("cyberacademy_completed_v1", []);
+let notes = readStored("cyberacademy_notes_v1", []);
+
+if (!Array.isArray(completedLessons)) completedLessons = [];
+if (!Array.isArray(notes)) notes = [];
+
+/* =========================
+   3. GENERAL HELPERS
+========================= */
+
+const $ = (selector) => document.querySelector(selector);
+
+function showNotice(message) {
+  const notice = $("#notice");
+  if (!notice) return;
+
+  notice.textContent = message;
+  notice.classList.add("show");
+
+  if (showNotice.timer) {
+    clearTimeout(showNotice.timer);
+  }
+
+  showNotice.timer = setTimeout(() => {
+    notice.classList.remove("show");
+  }, 2600);
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, (character) => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    };
+
+    return entities[character];
+  });
+}
+
+function getAllLessons() {
+  return courses.flatMap((course) =>
+    course.lessons.map((lesson, index) => ({
+      courseId: course.id,
+      lessonIndex: index,
+      title: lesson.title,
+      key: `${course.id}:${index}`
+    }))
+  );
+}
+
+function isCompleted(courseId, lessonIndex) {
+  return completedLessons.includes(`${courseId}:${lessonIndex}`);
+}
+
+/* =========================
+   4. COURSE SEARCH
+========================= */
+
+function renderCourses() {
+  const grid = $("#courseGrid");
+  if (!grid) return;
+
+  const search = ($("#courseSearch")?.value || "").trim().toLowerCase();
+  const category = $("#categoryFilter")?.value || "All";
+
+  const filtered = courses.filter((course) => {
+    const searchableText = [
+      course.title,
+      course.category,
+      course.description,
+      course.level,
+      ...course.objectives,
+      ...course.lessons.map((lesson) => lesson.title)
+    ].join(" ").toLowerCase();
+
+    const matchesSearch = searchableText.includes(search);
+    const matchesCategory =
+      category === "All" || course.category === category;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  $("#courseResults").textContent =
+    `${filtered.length} course${filtered.length === 1 ? "" : "s"} found`;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        No courses match your search. Try another keyword or category.
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((course) => `
+    <article class="course-card">
+      <div class="course-art" aria-hidden="true">${course.icon}</div>
+      <div class="course-content">
+        <span class="course-category">${escapeHTML(course.category)}</span>
+        <h3>${escapeHTML(course.title)}</h3>
+        <p>${escapeHTML(course.description)}</p>
+        <div class="course-meta">
+          <span>${escapeHTML(course.level)}</span>
+          <span>${course.lessons.length} lessons</span>
+        </div>
+        <button
+          class="btn btn-primary open-course"
+          type="button"
+          data-course-id="${escapeHTML(course.id)}"
+        >Open course →</button>
+      </div>
+    </article>
+  `).join("");
+}
+
+$("#courseSearch")?.addEventListener("input", renderCourses);
+$("#categoryFilter")?.addEventListener("change", renderCourses);
+
+document.querySelectorAll("[data-category-link]").forEach((link) => {
+  link.addEventListener("click", () => {
+    const filter = $("#categoryFilter");
+    if (filter) {
+      filter.value = link.dataset.categoryLink;
+      renderCourses();
+    }
+  });
+});
+
+/* =========================
+   5. COURSE DETAILS
+========================= */
+
+let activeCourseId = null;
+let activeLessonIndex = null;
+
+function openCourse(courseId) {
+  const course = courses.find((item) => item.id === courseId);
+  if (!course) {
+    showNotice("Course not found.");
+    return;
+  }
+
+  activeCourseId = course.id;
+  activeLessonIndex = null;
+
+  $("#detailCategory").textContent = course.category;
+  $("#detailTitle").textContent = course.title;
+  $("#detailDescription").textContent = course.description;
+
+  $("#detailObjectives").innerHTML = course.objectives
+    .map((objective) => `<li>${escapeHTML(objective)}</li>`)
+    .join("");
+
+  $("#lessonContent").hidden = true;
+
+  renderLessons();
+  $("#courseDetails").hidden = false;
+  $("#courseDetails").scrollIntoView({ behavior: "smooth" });
+}
+
+function renderLessons() {
+  const course = courses.find((item) => item.id === activeCourseId);
+  if (!course) return;
+
+  $("#lessonList").innerHTML = course.lessons.map((lesson, index) => {
+    const done = isCompleted(course.id, index);
+
+    return `
+      <div class="progress-row">
+        <span>
+          ${done ? "✓ " : ""}
+          ${index + 1}. ${escapeHTML(lesson.title)}
+        </span>
+        <button
+          class="btn btn-secondary btn-small open-lesson"
+          type="button"
+          data-lesson-index="${index}"
+        >${done ? "Review lesson" : "Open lesson"}</button>
+      </div>
+    `;
+  }).join("");
+}
+
+function openLesson(index) {
+  const course = courses.find((item) => item.id === activeCourseId);
+  if (!course || !course.lessons[index]) return;
+
+  activeLessonIndex = index;
+  const lesson = course.lessons[index];
+
+  $("#lessonTitle").textContent = lesson.title;
+
+  $("#lessonBody").innerHTML = lesson.body
+    .map((paragraph) => `<p style="margin-top:14px">${escapeHTML(paragraph)}</p>`)
+    .join("");
+
+  const completeButton = $("#completeLesson");
+  const done = isCompleted(course.id, index);
+
+  completeButton.textContent = done
+    ? "Mark lesson incomplete"
+    : "Mark lesson complete";
+
+  completeButton.classList.toggle("btn-primary", !done);
+  completeButton.classList.toggle("btn-secondary", done);
+
+  $("#lessonContent").hidden = false;
+  $("#lessonContent").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+$("#courseGrid")?.addEventListener("click", (event) => {
+  const button = event.target.closest(".open-course");
+  if (button) openCourse(button.dataset.courseId);
+});
+
+$("#lessonList")?.addEventListener("click", (event) => {
+  const button = event.target.closest(".open-lesson");
+  if (button) openLesson(Number(button.dataset.lessonIndex));
+});
+
+$("#backToCourses")?.addEventListener("click", () => {
+  $("#courseDetails").hidden = true;
+  $("#courses").scrollIntoView({ behavior: "smooth" });
+});
+
+$("#completeLesson")?.addEventListener("click", () => {
+  if (activeCourseId === null || activeLessonIndex === null) return;
+
+  const key = `${activeCourseId}:${activeLessonIndex}`;
+  const alreadyDone = completedLessons.includes(key);
+
+  completedLessons = alreadyDone
+    ? completedLessons.filter((item) => item !== key)
+    : [...completedLessons, key];
+
+  saveStored("cyberacademy_completed_v1", completedLessons);
+
+  renderLessons();
+  renderDashboard();
+  openLesson(activeLessonIndex);
+
+  showNotice(alreadyDone ? "Lesson marked incomplete." : "Lesson completed!");
+});
+
+/* =========================
+   6. PERSONAL NOTES
+========================= */
+
+function renderNotes() {
+  const list = $("#noteList");
+  if (!list) return;
+
+  $("#notesCount").textContent = notes.length;
+
+  if (notes.length === 0) {
+    list.innerHTML = '<p class="muted">No notes saved yet. Create your first note above.</p>';
+    return;
+  }
+
+  list.innerHTML = notes.map((note) => `
+    <article class="note-item">
+      <h4>${escapeHTML(note.title)}</h4>
+      <p style="margin-top:8px">${escapeHTML(note.text)}</p>
+      <small>${escapeHTML(note.date || "")}</small>
+      <button
+        class="btn btn-secondary btn-small delete-note"
+        type="button"
+        data-note-id="${escapeHTML(note.id)}"
+      >Delete note</button>
+    </article>
+  `).join("");
+}
+
+$("#noteForm")?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const title = $("#noteTitle").value.trim();
+  const text = $("#noteText").value.trim();
+
+  if (!title || !text) {
+    showNotice("Please enter a title and note.");
+    return;
+  }
+
+  const note = {
+    id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    title,
+    text,
+    date: new Date().toLocaleString()
+  };
+
+  notes.unshift(note);
+
+  if (!saveStored("cyberacademy_notes_v1", notes)) {
+    notes.shift();
+    return;
+  }
+
+  $("#noteForm").reset();
+  renderNotes();
+  showNotice("Note saved successfully.");
+});
+
+$("#noteList")?.addEventListener("click", (event) => {
+  const button = event.target.closest(".delete-note");
+  if (!button) return;
+
+  const noteId = button.dataset.noteId;
+  const previousNotes = notes;
+
+  notes = notes.filter((note) => note.id !== noteId);
+
+  if (!saveStored("cyberacademy_notes_v1", notes)) {
+    notes = previousNotes;
+    return;
+  }
+
+  renderNotes();
+  showNotice("Note deleted.");
+});
+
+/* =========================
+   7. PROGRESS DASHBOARD
+========================= */
+
+function renderDashboard() {
+  const allLessons = getAllLessons();
+  const total = allLessons.length;
+  const completed = allLessons.filter((lesson) =>
+    completedLessons.includes(lesson.key)
+  ).length;
+
+  const percentage = total === 0
+    ? 0
+    : Math.round((completed / total) * 100);
+
+  $("#completedCount").textContent = completed;
+  $("#totalLessonCount").textContent = total;
+  $("#progressPercent").textContent = `${percentage}%`;
+  $("#overallProgressFill").style.width = `${percentage}%`;
+  $("#overallProgressBar").setAttribute("aria-valuenow", String(percentage));
+
+  $("#progressMessage").textContent = percentage === 100
+    ? "Excellent work! You have completed every available lesson."
+    : completed === 0
+      ? "Open a course and mark a lesson complete to track your progress."
+      : `You have completed ${completed} of ${total} available lessons. Keep going!`;
+
+  $("#courseProgressList").innerHTML = courses.map((course) => {
+    const done = course.lessons.filter((lesson, index) =>
+      isCompleted(course.id, index)
+    ).length;
+
+    const coursePercentage = Math.round((done / course.lessons.length) * 100);
+
+    return `
+      <div style="padding:14px 0;border-bottom:1px solid var(--border)">
+        <div class="progress-row">
+          <span>${escapeHTML(course.title)}</span>
+          <strong>${coursePercentage}%</strong>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" style="width:${coursePercentage}%"></div>
+        </div>
+        <p class="muted">${done} of ${course.lessons.length} lessons completed</p>
+      </div>
+    `;
+  }).join("");
+}
+
+/* =========================
+   8. MOBILE NAVIGATION
+========================= */
+
+const menuToggle = $("#menuToggle");
+const navLinks = $("#navLinks");
+
+menuToggle?.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation menu" : "Open navigation menu"
+  );
+});
+
+navLinks?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuToggle?.setAttribute("aria-expanded", "false");
+  });
+});
+
+/* =========================
+   9. INITIALIZE WEBSITE
+========================= */
+
+$("#courseCount").textContent = courses.length;
+$("#currentYear").textContent = new Date().getFullYear();
+
+renderCourses();
+renderNotes();
+renderDashboard();
+</script>
+
 </html>
